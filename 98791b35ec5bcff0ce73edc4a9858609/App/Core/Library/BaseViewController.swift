@@ -7,15 +7,39 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+class BaseViewController<T: BaseView>: UIViewController {
+    
+    // MARK: - Properties
+    typealias ViewType = T
+    
+    // MARK: - Init
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        linkInteractor()
+        configureAppearance()
+        prepareLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    // MARK: - Lifecycle
+    override func loadView() {
+        super.loadView()
+        view = ViewType.create()
+    }
+    
+    // MARK: - Methods
+    func linkInteractor() {}
+    
+    func configureAppearance() {
         if #available(iOS 13.0, *) {
             view.backgroundColor = .systemBackground
         } else {
             view.backgroundColor = .white
         }
     }
+    
+    func prepareLayout() {}
 }

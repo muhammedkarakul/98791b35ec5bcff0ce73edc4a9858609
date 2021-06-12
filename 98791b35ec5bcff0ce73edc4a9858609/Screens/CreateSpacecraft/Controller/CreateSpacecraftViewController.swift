@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateSpacecraftViewController: BaseViewController {
+final class CreateSpacecraftViewController: BaseViewController<CreateSpacecraftView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
