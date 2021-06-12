@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol CreateSpacecraftViewDelegate: AnyObject {
+    func didSumOfSliderValuesChanged(_ sender: UISlider, sumOfSliderValues sum: Float)
+}
+
 final class CreateSpacecraftView: BaseView {
     
     // MARK: - Properties
+    weak var delegate: CreateSpacecraftViewDelegate?
+    
     var name: String? {
         nameTextField.text
+    }
+    
+    var sumOfSliderValues: Float {
+        titledSliderViews.reduce(0.0) { $0 + $1.sliderValue }
     }
     
     // MARK: - UI
@@ -22,29 +32,10 @@ final class CreateSpacecraftView: BaseView {
         return textField
     }()
     
-    
-    private lazy var durabilityTitledSliderView: TitledSliderView = {
-        let titledSliderView = TitledSliderView()
-        titledSliderView.title = "Dayanıklılık"
-        return titledSliderView
-    }()
-    
-    private lazy var speedTitledSliderView: TitledSliderView = {
-        let titledSliderView = TitledSliderView()
-        titledSliderView.title = "Hız"
-        return titledSliderView
-    }()
-    
-    private lazy var capacityTitledSliderView: TitledSliderView = {
-        let titledSliderView = TitledSliderView()
-        titledSliderView.title = "Kapasite"
-        return titledSliderView
-    }()
+    private lazy var titledSliderViews = [TitledSliderView]()
     
     private lazy var titledSliderStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [durabilityTitledSliderView,
-                                                       speedTitledSliderView,
-                                                       capacityTitledSliderView])
+        let stackView = UIStackView(arrangedSubviews: titledSliderViews)
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
@@ -65,6 +56,12 @@ final class CreateSpacecraftView: BaseView {
     }()
     
     // MARK: - Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        createTitledSliderViews()
+        setTitledSlidersDelegate(self)
+    }
+    
     override func prepareLayout() {
         super.prepareLayout()
         setupNameTextFieldLayout()
@@ -108,5 +105,32 @@ final class CreateSpacecraftView: BaseView {
                 make.bottom.equalTo(-36.0)
             }
         }
+    }
+    
+    private func createTitledSliderViews() {
+        for attribute in SpacecraftAttribute.allCases {
+            let titledSliderView = TitledSliderView(title: attribute.rawValue)
+            titledSliderViews.append(titledSliderView)
+        }
+    }
+    
+    private func setTitledSlidersDelegate(_ delegate: TitledSliderViewDelegate) {
+        titledSliderViews.forEach { $0.delegate = delegate }
+    }
+}
+
+// MARK: Enums
+extension CreateSpacecraftView {
+    enum SpacecraftAttribute: String, CaseIterable {
+        case durability = "Dayanıklılık"
+        case speed = "Hız"
+        case capacity = "Kapasite"
+    }
+}
+
+// MARK: - TitledSliderViewDelegate
+extension CreateSpacecraftView: TitledSliderViewDelegate {
+    func didSliderValueChanged(_ slider: UISlider) {
+        delegate?.didSumOfSliderValuesChanged(slider, sumOfSliderValues: sumOfSliderValues)
     }
 }

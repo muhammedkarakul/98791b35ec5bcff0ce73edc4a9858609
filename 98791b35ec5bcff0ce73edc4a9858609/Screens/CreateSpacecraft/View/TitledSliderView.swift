@@ -7,23 +7,46 @@
 
 import UIKit
 
+protocol TitledSliderViewDelegate: AnyObject {
+    func didSliderValueChanged(_ slider: UISlider)
+}
+
 final class TitledSliderView: BaseView {
     // MARK: Properties
+    weak var delegate: TitledSliderViewDelegate?
+    
     var title: String? {
-        didSet {
-            label.text = title
+        set {
+            label.text = newValue
+        }
+        get {
+            label.text
         }
     }
     
-    var sliderValue: Float? {
+    var sliderValue: Float {
         slider.value
     }
     
     // MARK: - UI
     private lazy var label = UILabel()
-    private lazy var slider = UISlider()
+    private lazy var slider: UISlider = {
+        let slider = UISlider()
+        slider.maximumValue = 15
+        slider.minimumValue = 0
+        return slider
+    }()
+    
+    convenience init(title: String?) {
+        self.init()
+        self.title = title
+    }
     
     // MARK: - Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        slider.addTarget(self, action: #selector(didSliderValueChanged(_:)), for: .valueChanged)
+    }
     override func prepareLayout() {
         super.prepareLayout()
         setupLabelLayout()
@@ -51,3 +74,10 @@ final class TitledSliderView: BaseView {
     }
 }
 
+// MARK: - Actions
+extension TitledSliderView {
+    @objc
+    private func didSliderValueChanged(_ sender: UISlider) {
+        delegate?.didSliderValueChanged(sender)
+    }
+}
