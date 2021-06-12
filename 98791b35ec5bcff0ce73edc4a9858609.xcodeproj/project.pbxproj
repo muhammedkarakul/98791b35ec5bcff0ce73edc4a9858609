@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		579429592674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 579429572674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld */; };
 		5794295B2674D56000ACF6AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5794295A2674D56000ACF6AC /* Assets.xcassets */; };
 		5794295E2674D56000ACF6AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5794295C2674D56000ACF6AC /* LaunchScreen.storyboard */; };
+		57D7825A2674E8C60041FB9A /* TitledSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D782592674E8C60041FB9A /* TitledSliderView.swift */; };
 		946C49874A6E8C2A20634B51 /* Pods_98791b35ec5bcff0ce73edc4a9858609.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02406ED21C74563AD9EE10A8 /* Pods_98791b35ec5bcff0ce73edc4a9858609.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		5794295A2674D56000ACF6AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5794295D2674D56000ACF6AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5794295F2674D56000ACF6AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57D782592674E8C60041FB9A /* TitledSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */,
+				57D782592674E8C60041FB9A /* TitledSliderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,7 +177,6 @@
 				4859E7AD52EA6A38C0B3FEEB /* Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig */,
 				2FBB600733D39183B1A945B2 /* Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -300,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				579429532674D55F00ACF6AC /* CreateSpacecraftViewController.swift in Sources */,
+				57D7825A2674E8C60041FB9A /* TitledSliderView.swift in Sources */,
 				57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */,
 				57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */,
 				57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */,

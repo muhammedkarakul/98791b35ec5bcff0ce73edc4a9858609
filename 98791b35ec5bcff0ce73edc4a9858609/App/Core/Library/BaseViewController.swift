@@ -12,6 +12,13 @@ class BaseViewController<T: BaseView>: UIViewController {
     // MARK: - Properties
     typealias ViewType = T
     
+    var baseView: ViewType {
+        guard let aView = view as? ViewType else {
+            fatalError("view property has not been initialized yet, or not initialized as \(ViewType.self).")
+        }
+        return aView
+    }
+    
     // MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
