@@ -54,8 +54,8 @@
 		5794294D2674D55F00ACF6AC /* 98791b35ec5bcff0ce73edc4a9858609 */ = {
 			isa = PBXGroup;
 			children = (
-				579429682674DB9B00ACF6AC /* Screens */,
 				579429662674DB8300ACF6AC /* App */,
+				579429682674DB9B00ACF6AC /* Screens */,
 				579429652674DB6600ACF6AC /* Supporting Files */,
 			);
 			path = 98791b35ec5bcff0ce73edc4a9858609;
