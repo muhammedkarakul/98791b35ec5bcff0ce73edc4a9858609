@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = ViewController()
+        let viewController = CreateSpacecraftViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
