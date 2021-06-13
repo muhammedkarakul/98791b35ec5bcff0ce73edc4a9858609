@@ -9,6 +9,7 @@ import UIKit
 
 protocol CreateSpacecraftViewDelegate: AnyObject {
     func didSumOfSliderValuesChanged(_ sender: UISlider, sumOfSliderValues sum: Float)
+    func didContinueButtonTapped(_ sender: UIButton)
 }
 
 final class CreateSpacecraftView: BaseView {
@@ -18,6 +19,18 @@ final class CreateSpacecraftView: BaseView {
     
     var name: String? {
         nameTextField.text
+    }
+    
+    var durability: Int16 {
+        Int16(titledSliderViews[0].sliderValue)
+    }
+    
+    var speed: Int16 {
+        Int16(titledSliderViews[1].sliderValue)
+    }
+    
+    var capacity: Int16 {
+        Int16(titledSliderViews[2].sliderValue)
     }
     
     var sumOfSliderValues: Float {
@@ -60,6 +73,7 @@ final class CreateSpacecraftView: BaseView {
         super.linkInteractor()
         createTitledSliderViews()
         setTitledSlidersDelegate(self)
+        continueButton.addTarget(self, action: #selector(didContinueButtonTapped(_:)), for: .touchUpInside)
     }
     
     override func prepareLayout() {
@@ -132,5 +146,13 @@ extension CreateSpacecraftView {
 extension CreateSpacecraftView: TitledSliderViewDelegate {
     func didSliderValueChanged(_ slider: UISlider) {
         delegate?.didSumOfSliderValuesChanged(slider, sumOfSliderValues: sumOfSliderValues)
+    }
+}
+
+// MARK: - Actions
+extension CreateSpacecraftView {
+    @objc
+    private func didContinueButtonTapped(_ sender: UIButton) {
+        delegate?.didContinueButtonTapped(sender)
     }
 }

@@ -20,7 +20,9 @@ class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func linkInteractor() {}
+    func linkInteractor() {
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didRecognizeTapGesure(_:))))
+    }
     
     func configureAppearance() {}
     
@@ -31,4 +33,12 @@ class BaseView: UIView {
         return view
     }
     
+}
+
+// MARK: - Actions
+extension BaseView {
+    @objc
+    private func didRecognizeTapGesure(_ sender: UITapGestureRecognizer) {
+        endEditing(true)
+    }
 }

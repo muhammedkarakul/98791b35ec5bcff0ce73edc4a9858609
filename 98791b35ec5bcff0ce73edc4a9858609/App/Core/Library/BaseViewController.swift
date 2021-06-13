@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController<T: BaseView>: UIViewController {
+class BaseViewController<T: BaseView>: UIViewController, AlertPresentable {
     
     // MARK: - Properties
     typealias ViewType = T
