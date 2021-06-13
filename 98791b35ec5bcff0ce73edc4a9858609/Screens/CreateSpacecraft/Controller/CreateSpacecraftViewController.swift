@@ -63,7 +63,7 @@ extension CreateSpacecraftViewController: CreateSpacecraftViewDelegate {
                         return
                     }
                     viewModel.setUserDefaultsValue(true, forKey: .isSpaceCraftCreated)
-                    let mainTabBarController = MainTabBarController(homeViewController: HomeViewController())
+                    let mainTabBarController = MainTabBarController()
                     navigationController?.pushViewController(mainTabBarController, animated: true)
                 }
                 

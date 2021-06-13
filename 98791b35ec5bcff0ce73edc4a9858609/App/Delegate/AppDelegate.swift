@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UserDefaultsAccessible {
 
     private func createWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = isSpacecraftCreated ? MainTabBarController(homeViewController: HomeViewController()) : CreateSpacecraftViewController()
+        let viewController = isSpacecraftCreated ? MainTabBarController() : CreateSpacecraftViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
