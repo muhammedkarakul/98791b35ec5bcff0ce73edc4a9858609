@@ -8,10 +8,11 @@
 import UIKit
 
 final class HomeViewController: BaseViewController<HomeView> {
+    
     // MARK: - Setup
     override func configureAppearance() {
         super.configureAppearance()
-        title = "İstasyon"
         navigationItem.setHidesBackButton(true, animated: true)
+        tabBarItem = UITabBarItem(title: "İstasyon", image: UIImage(named: "rocket"), tag: 0)
     }
 }
