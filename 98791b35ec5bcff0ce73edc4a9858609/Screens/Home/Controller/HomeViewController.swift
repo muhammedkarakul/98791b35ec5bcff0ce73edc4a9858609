@@ -19,9 +19,36 @@ final class HomeViewController: BaseViewController<HomeView> {
     }
     
     // MARK: - Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        baseView.setCollectionViewDelegate(self, andDataSource: self)
+    }
+    
     override func configureAppearance() {
         super.configureAppearance()
         title = "UGS: 00000  EUS: 00000 DS: 00000"
-        tabBarItem = UITabBarItem(title: "İstasyon", image: UIImage(named: "rocket"), tag: 0)
+        tabBarItem = UITabBarItem(title: "İstasyon", image: .rocket, tag: 0)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {}
+
+// MARK: - UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        viewModel.numberOfItems
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! StationCollectionViewCell
+        viewModel.configureStationCollectionViewCell(cell)
+        return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.width - 32)
     }
 }

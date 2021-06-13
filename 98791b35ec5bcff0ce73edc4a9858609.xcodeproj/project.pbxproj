@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		573014BF267696530013456B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014BE267696530013456B /* HomeViewModel.swift */; };
+		573014C22676987A0013456B /* StationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014C12676987A0013456B /* StationCollectionViewCell.swift */; };
+		573014C826769D030013456B /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014C726769D030013456B /* BaseCollectionViewCell.swift */; };
+		573014CC2676A2FD0013456B /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014CB2676A2FD0013456B /* Font.swift */; };
+		573014CE2676A36B0013456B /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014CD2676A36B0013456B /* Image.swift */; };
 		57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF42674E22700EF0CC5 /* BaseViewController.swift */; };
 		57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF82674E32700EF0CC5 /* BaseView.swift */; };
 		57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */; };
@@ -34,6 +38,10 @@
 		2FBB600733D39183B1A945B2 /* Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig"; path = "Target Support Files/Pods-98791b35ec5bcff0ce73edc4a9858609/Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig"; sourceTree = "<group>"; };
 		4859E7AD52EA6A38C0B3FEEB /* Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig"; path = "Target Support Files/Pods-98791b35ec5bcff0ce73edc4a9858609/Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig"; sourceTree = "<group>"; };
 		573014BE267696530013456B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		573014C12676987A0013456B /* StationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCollectionViewCell.swift; sourceTree = "<group>"; };
+		573014C726769D030013456B /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		573014CB2676A2FD0013456B /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		573014CD2676A36B0013456B /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		57386EF42674E22700EF0CC5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		57386EF82674E32700EF0CC5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSpacecraftView.swift; sourceTree = "<group>"; };
@@ -76,6 +84,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		573014C0267698570013456B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				573014C12676987A0013456B /* StationCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		573014C92676A2E90013456B /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				573014CB2676A2FD0013456B /* Font.swift */,
+				573014CD2676A36B0013456B /* Image.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
 		57386EF12674E11F00EF0CC5 /* CreateSpacecraft */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +114,7 @@
 		57386EF22674E1C100EF0CC5 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				573014C92676A2E90013456B /* Design */,
 				57D78263267630910041FB9A /* Utilities */,
 				57386EF32674E1FC00EF0CC5 /* Library */,
 			);
@@ -100,6 +126,7 @@
 			children = (
 				57386EF42674E22700EF0CC5 /* BaseViewController.swift */,
 				57386EF82674E32700EF0CC5 /* BaseView.swift */,
+				573014C726769D030013456B /* BaseCollectionViewCell.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -142,6 +169,7 @@
 		578F3B01267651F000E5AA34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				573014C0267698570013456B /* Cell */,
 				578F3B022676520500E5AA34 /* HomeView.swift */,
 			);
 			path = View;
@@ -410,10 +438,14 @@
 				578F3B032676520500E5AA34 /* HomeView.swift in Sources */,
 				578F3AFE267635DC00E5AA34 /* MainTabBarController.swift in Sources */,
 				57D78265267630AE0041FB9A /* AlertPresentable.swift in Sources */,
+				573014CE2676A36B0013456B /* Image.swift in Sources */,
 				57D78262267629B40041FB9A /* AppDelegate+CoreData.swift in Sources */,
 				57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */,
 				57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */,
+				573014C826769D030013456B /* BaseCollectionViewCell.swift in Sources */,
 				57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */,
+				573014CC2676A2FD0013456B /* Font.swift in Sources */,
+				573014C22676987A0013456B /* StationCollectionViewCell.swift in Sources */,
 				579429592674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld in Sources */,
 				578F3B0626765CAD00E5AA34 /* UserDefaultsAccessible.swift in Sources */,
 				57D7825D2674F5D60041FB9A /* CreateSpacecraftViewModel.swift in Sources */,

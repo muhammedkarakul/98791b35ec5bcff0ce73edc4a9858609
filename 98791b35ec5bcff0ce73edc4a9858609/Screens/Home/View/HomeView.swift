@@ -84,17 +84,23 @@ final class HomeView: BaseView {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+        collectionView.backgroundColor = .white
         return collectionView
     }()
     
     private lazy var stationNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24.0)
+        label.font = .title
         return label
     }()
     
     // MARK: - Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        collectionView.register(StationCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
     override func prepareLayout() {
         super.prepareLayout()
         setupStackViewLayout()
@@ -148,5 +154,10 @@ final class HomeView: BaseView {
                 make.bottom.equalTo(-115.0)
             }
         }
+    }
+    
+    func setCollectionViewDelegate(_ delegate: UICollectionViewDelegate, andDataSource dataSource: UICollectionViewDataSource) {
+        collectionView.delegate = delegate
+        collectionView.dataSource = dataSource
     }
 }

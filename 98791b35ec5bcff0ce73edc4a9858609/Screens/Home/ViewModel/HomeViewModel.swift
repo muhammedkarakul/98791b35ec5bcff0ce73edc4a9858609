@@ -8,10 +8,20 @@
 import Foundation
 
 final class HomeViewModel {
+    var numberOfItems: Int {
+        8
+    }
+    
     func configureHomeView(_ view: HomeView) {
         view.spacecraftName = "Uzay Aracı Adı"
         view.damageCapacity = 100
         view.stationName = "İstasyon Adı"
         view.time = 49
+    }
+    
+    func configureStationCollectionViewCell(_ cell: StationCollectionViewCell) {
+        cell.capacity = "00000/00000"
+        cell.universalSpaceTime = "000EUS"
+        cell.name = "İstasyon Adı"
     }
 }
