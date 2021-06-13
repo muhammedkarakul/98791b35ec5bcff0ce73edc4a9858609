@@ -85,7 +85,10 @@ final class StationCollectionViewCell: BaseCollectionViewCell {
     private func setupContainerViewLayout() {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.equalTo(16.0)
+            make.top.equalTo(16.0)
+            make.trailing.equalTo(-16.0)
+            make.bottom.equalTo(-16.0)
         }
     }
     
