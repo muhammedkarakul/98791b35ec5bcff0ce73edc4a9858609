@@ -62,7 +62,9 @@ extension CreateSpacecraftViewController: CreateSpacecraftViewDelegate {
                         print("Uzay aracı kaydedilemedi. \(error), \(error.userInfo)")
                         return
                     }
-                    print("GO TO HOME")
+                    viewModel.setUserDefaultsValue(true, forKey: .isSpaceCraftCreated)
+                    let mainTabBarController = MainTabBarController(homeViewController: HomeViewController())
+                    navigationController?.pushViewController(mainTabBarController, animated: true)
                 }
                 
                 

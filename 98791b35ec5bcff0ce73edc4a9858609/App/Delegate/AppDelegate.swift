@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UserDefaultsAccessible {
 
     var window: UIWindow?
 
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let viewController = CreateSpacecraftViewController()
+        let viewController = isSpacecraftCreated ? MainTabBarController(homeViewController: HomeViewController()) : CreateSpacecraftViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

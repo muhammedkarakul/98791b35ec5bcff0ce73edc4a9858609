@@ -10,6 +10,12 @@
 		57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF42674E22700EF0CC5 /* BaseViewController.swift */; };
 		57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF82674E32700EF0CC5 /* BaseView.swift */; };
 		57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */; };
+		578F3AFE267635DC00E5AA34 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3AFD267635DC00E5AA34 /* MainTabBarController.swift */; };
+		578F3B00267651EC00E5AA34 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3AFF267651EC00E5AA34 /* HomeViewController.swift */; };
+		578F3B032676520500E5AA34 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3B022676520500E5AA34 /* HomeView.swift */; };
+		578F3B0626765CAD00E5AA34 /* UserDefaultsAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3B0526765CAD00E5AA34 /* UserDefaultsAccessible.swift */; };
+		578F3B0926765E3500E5AA34 /* UserDefaultError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3B0826765E3500E5AA34 /* UserDefaultError.swift */; };
+		578F3B0B26765E4A00E5AA34 /* DefaultName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578F3B0A26765E4A00E5AA34 /* DefaultName.swift */; };
 		5794294F2674D55F00ACF6AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5794294E2674D55F00ACF6AC /* AppDelegate.swift */; };
 		579429532674D55F00ACF6AC /* CreateSpacecraftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579429522674D55F00ACF6AC /* CreateSpacecraftViewController.swift */; };
 		579429592674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 579429572674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld */; };
@@ -29,6 +35,12 @@
 		57386EF42674E22700EF0CC5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		57386EF82674E32700EF0CC5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSpacecraftView.swift; sourceTree = "<group>"; };
+		578F3AFD267635DC00E5AA34 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		578F3AFF267651EC00E5AA34 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		578F3B022676520500E5AA34 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		578F3B0526765CAD00E5AA34 /* UserDefaultsAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccessible.swift; sourceTree = "<group>"; };
+		578F3B0826765E3500E5AA34 /* UserDefaultError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultError.swift; sourceTree = "<group>"; };
+		578F3B0A26765E4A00E5AA34 /* DefaultName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultName.swift; sourceTree = "<group>"; };
 		5794294B2674D55F00ACF6AC /* 98791b35ec5bcff0ce73edc4a9858609.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 98791b35ec5bcff0ce73edc4a9858609.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5794294E2674D55F00ACF6AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		579429522674D55F00ACF6AC /* CreateSpacecraftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSpacecraftViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +111,57 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		578F3AFB2676359B00E5AA34 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				578F3B01267651F000E5AA34 /* View */,
+				578F3AFC267635B000E5AA34 /* Controller */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		578F3AFC267635B000E5AA34 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				578F3AFF267651EC00E5AA34 /* HomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		578F3B01267651F000E5AA34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				578F3B022676520500E5AA34 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		578F3B04267653E900E5AA34 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				578F3AFD267635DC00E5AA34 /* MainTabBarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		578F3B0726765E2300E5AA34 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				578F3B0526765CAD00E5AA34 /* UserDefaultsAccessible.swift */,
+				578F3B0826765E3500E5AA34 /* UserDefaultError.swift */,
+				578F3B0A26765E4A00E5AA34 /* DefaultName.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		578F3B0C2676612000E5AA34 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				57D78264267630AE0041FB9A /* AlertPresentable.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		579429422674D55F00ACF6AC = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +222,8 @@
 		579429682674DB9B00ACF6AC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				578F3B04267653E900E5AA34 /* Main */,
+				578F3AFB2676359B00E5AA34 /* Home */,
 				57386EF12674E11F00EF0CC5 /* CreateSpacecraft */,
 			);
 			path = Screens;
@@ -191,7 +256,8 @@
 		57D78263267630910041FB9A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				57D78264267630AE0041FB9A /* AlertPresentable.swift */,
+				578F3B0C2676612000E5AA34 /* Alert */,
+				578F3B0726765E2300E5AA34 /* UserDefaults */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -328,14 +394,20 @@
 			files = (
 				579429532674D55F00ACF6AC /* CreateSpacecraftViewController.swift in Sources */,
 				57D7825A2674E8C60041FB9A /* TitledSliderView.swift in Sources */,
+				578F3B0B26765E4A00E5AA34 /* DefaultName.swift in Sources */,
+				578F3B032676520500E5AA34 /* HomeView.swift in Sources */,
+				578F3AFE267635DC00E5AA34 /* MainTabBarController.swift in Sources */,
 				57D78265267630AE0041FB9A /* AlertPresentable.swift in Sources */,
 				57D78262267629B40041FB9A /* AppDelegate+CoreData.swift in Sources */,
 				57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */,
 				57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */,
 				57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */,
 				579429592674D55F00ACF6AC /* _8791b35ec5bcff0ce73edc4a9858609.xcdatamodeld in Sources */,
+				578F3B0626765CAD00E5AA34 /* UserDefaultsAccessible.swift in Sources */,
 				57D7825D2674F5D60041FB9A /* CreateSpacecraftViewModel.swift in Sources */,
+				578F3B0926765E3500E5AA34 /* UserDefaultError.swift in Sources */,
 				5794294F2674D55F00ACF6AC /* AppDelegate.swift in Sources */,
+				578F3B00267651EC00E5AA34 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

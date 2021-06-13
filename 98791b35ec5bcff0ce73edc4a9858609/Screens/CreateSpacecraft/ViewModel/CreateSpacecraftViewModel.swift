@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-final class CreateSpacecraftViewModel {
+final class CreateSpacecraftViewModel: UserDefaultsAccessible {
     func saveSpacecraft(withName name: String, durability: Int16, speed: Int16, capacity: Int16, completion: (NSError?) -> Void) {
         guard let appDelegate =
                 UIApplication.shared.delegate as? AppDelegate else {
