@@ -7,30 +7,12 @@
 
 import CoreData
 
-protocol HomeViewModelDelegate: AnyObject {
-    func didErrorOccured(_ error : Error?)
-    func didResponseFetched(_ response: [Station]?)
-}
-
-final class HomeViewModel {
+final class HomeViewModel: CoreDataAccessible {
     // MARK: - Properties
-    weak var delegate: HomeViewModelDelegate?
     
-    private var error: Error? {
-        didSet {
-            DispatchQueue.main.async {
-                self.delegate?.didErrorOccured(self.error)
-            }
-        }
-    }
+    private var stations: [StationEntity]?
     
-    private var stations: [Station]? {
-        didSet {
-            DispatchQueue.main.async {
-                self.delegate?.didResponseFetched(self.stations)
-            }
-        }
-    }
+    private var spacecraft: Spacecraft?
     
     var numberOfItems: Int {
         stations?.count ?? 0
@@ -38,9 +20,9 @@ final class HomeViewModel {
     
     // MARK: - Methods
     func configureHomeView(_ view: HomeView) {
-        view.spacecraftName = "Uzay Aracı Adı"
-        view.damageCapacity = 100
-        view.stationName = "İstasyon Adı"
+        view.spacecraftName = spacecraft?.name
+        view.damageCapacity = spacecraft?.damageCapacity
+        view.stationName = spacecraft?.currentStation.name
         view.time = 49
     }
     
@@ -51,22 +33,25 @@ final class HomeViewModel {
         cell.name = station.name
     }
     
-    func getStations() {
-        guard let url = URL(string: "https://run.mocky.io/v3/e7211664-cbb6-4357-9c9d-f12bf8bab2e2") else { return }
-        URLSession.shared.dataTask(with: url) { data, response, error in
+    func fetchStations(completion: (Error?) -> Void) {
+        fetchEntity(withName: "StationEntity") { entity, error in
             if let error = error {
-                self.error = error
+                completion(error)
                 return
             }
-            
-            guard let data = data else { return }
-            
-            do {
-                let stations = try JSONDecoder().decode([Station].self, from: data)
-                self.stations = stations
-            } catch {
-                self.error = error
+            stations = entity as? [StationEntity]
+            completion(nil)
+        }
+    }
+    
+    func fetchSpacecraft(completion: (Error?) -> Void) {
+        fetchEntity(withName: "SpacecraftEntity") { entity, error in
+            if let error = error {
+                completion(error)
+                return
             }
-        }.resume()
+            spacecraft = entity?.first as? Spacecraft
+            completion(nil)
+        }
     }
 }

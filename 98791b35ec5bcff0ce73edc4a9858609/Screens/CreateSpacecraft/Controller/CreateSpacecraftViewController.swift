@@ -20,6 +20,12 @@ final class CreateSpacecraftViewController: BaseViewController<CreateSpacecraftV
         }
     }
     
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getStations()
+    }
+    
     // MARK: - Setup
     override func configureAppearance() {
         super.configureAppearance()
@@ -30,8 +36,19 @@ final class CreateSpacecraftViewController: BaseViewController<CreateSpacecraftV
         super.linkInteractor()
         baseView.delegate = self
     }
+    
+    // MARK: - Methods
+    private func getStations() {
+        viewModel.getStations { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+        }
+    }
 }
 
+// MARK: - CreateSpacecraftViewDelegate
 extension CreateSpacecraftViewController: CreateSpacecraftViewDelegate {
     func didSumOfSliderValuesChanged(_ sender: UISlider, sumOfSliderValues sum: Float) {
         

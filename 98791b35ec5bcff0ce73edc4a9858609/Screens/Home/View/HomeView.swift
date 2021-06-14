@@ -16,7 +16,7 @@ final class HomeView: BaseView {
         }
     }
     
-    var damageCapacity: Int? {
+    var damageCapacity: Int64? {
         didSet {
             damageCapacityLabel.text = "\(damageCapacity ?? 0)"
         }
@@ -167,6 +167,8 @@ final class HomeView: BaseView {
     }
     
     func refresh() {
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }

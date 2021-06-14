@@ -6,6 +6,7 @@
         <attribute name="durability" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="speed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="currentStation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StationEntity"/>
     </entity>
     <entity name="StationEntity" representedClassName="StationEntity" syncable="YES" codeGenerationType="class">
         <attribute name="capacity" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -16,7 +17,7 @@
         <attribute name="stock" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="SpacecraftEntity" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="SpacecraftEntity" positionX="-63" positionY="-18" width="128" height="119"/>
         <element name="StationEntity" positionX="-54" positionY="36" width="128" height="119"/>
     </elements>
 </model>

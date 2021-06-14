@@ -15,14 +15,13 @@ final class HomeViewController: BaseViewController<HomeView> {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getStations()
-        viewModel.configureHomeView(baseView)
+        fetchStations()
+        fetchSpacecraft()
     }
     
     // MARK: - Setup
     override func linkInteractor() {
         super.linkInteractor()
-        viewModel.delegate = self
         baseView.setCollectionViewDelegate(self, andDataSource: self)
     }
     
@@ -56,15 +55,25 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - HomeViewModelDelegate
-extension HomeViewController: HomeViewModelDelegate {
-    func didErrorOccured(_ error: Error?) {
-        if let error = error {
-            showError(message: error.localizedDescription)
+// MARK: - Service
+extension HomeViewController {
+    private func fetchStations() {
+        viewModel.fetchStations { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            self.baseView.refresh()
         }
     }
     
-    func didResponseFetched(_ response: [Station]?) {
-        baseView.refresh()
+    private func fetchSpacecraft() {
+        viewModel.fetchSpacecraft { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            viewModel.configureHomeView(baseView)
+        }
     }
 }

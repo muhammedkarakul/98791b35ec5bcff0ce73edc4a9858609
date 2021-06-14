@@ -16,7 +16,7 @@ struct Station: Codable {
     let need: Int64
 }
 
-extension Station: CoreDataAccessible {
+extension Station: Saveable {
     var entityName: String {
         "StationEntity"
     }

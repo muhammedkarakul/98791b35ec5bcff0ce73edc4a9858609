@@ -20,6 +20,8 @@ extension AlertPresentable where Self: UIViewController {
     private func showAlert(title: String, message: String, prefferedStyle: UIAlertController.Style, actions: UIAlertAction...) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: prefferedStyle)
         actions.forEach { alert.addAction($0)}
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
     }
 }

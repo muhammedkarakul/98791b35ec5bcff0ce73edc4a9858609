@@ -14,7 +14,8 @@
 		573014CE2676A36B0013456B /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014CD2676A36B0013456B /* Image.swift */; };
 		573014E226771AA10013456B /* Spacecraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014E126771AA10013456B /* Spacecraft.swift */; };
 		573014E426771AF20013456B /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014E326771AF20013456B /* Station.swift */; };
-		573014E726771BBD0013456B /* CoreDataAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014E626771BBD0013456B /* CoreDataAccessible.swift */; };
+		573014E726771BBD0013456B /* Saveable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014E626771BBD0013456B /* Saveable.swift */; };
+		57385C842677A83000083BF8 /* CoreDataAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57385C832677A83000083BF8 /* CoreDataAccessible.swift */; };
 		57386EF52674E22700EF0CC5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF42674E22700EF0CC5 /* BaseViewController.swift */; };
 		57386EF92674E32700EF0CC5 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EF82674E32700EF0CC5 /* BaseView.swift */; };
 		57386EFB2674E3B700EF0CC5 /* CreateSpacecraftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */; };
@@ -47,7 +48,8 @@
 		573014CD2676A36B0013456B /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		573014E126771AA10013456B /* Spacecraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacecraft.swift; sourceTree = "<group>"; };
 		573014E326771AF20013456B /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
-		573014E626771BBD0013456B /* CoreDataAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAccessible.swift; sourceTree = "<group>"; };
+		573014E626771BBD0013456B /* Saveable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saveable.swift; sourceTree = "<group>"; };
+		57385C832677A83000083BF8 /* CoreDataAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAccessible.swift; sourceTree = "<group>"; };
 		57386EF42674E22700EF0CC5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		57386EF82674E32700EF0CC5 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		57386EFA2674E3B700EF0CC5 /* CreateSpacecraftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSpacecraftView.swift; sourceTree = "<group>"; };
@@ -126,7 +128,8 @@
 		573014E526771B9B0013456B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				573014E626771BBD0013456B /* CoreDataAccessible.swift */,
+				573014E626771BBD0013456B /* Saveable.swift */,
+				57385C832677A83000083BF8 /* CoreDataAccessible.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -468,7 +471,8 @@
 				579429532674D55F00ACF6AC /* CreateSpacecraftViewController.swift in Sources */,
 				57D7825A2674E8C60041FB9A /* TitledSliderView.swift in Sources */,
 				578F3B0B26765E4A00E5AA34 /* DefaultName.swift in Sources */,
-				573014E726771BBD0013456B /* CoreDataAccessible.swift in Sources */,
+				57385C842677A83000083BF8 /* CoreDataAccessible.swift in Sources */,
+				573014E726771BBD0013456B /* Saveable.swift in Sources */,
 				578F3B032676520500E5AA34 /* HomeView.swift in Sources */,
 				578F3AFE267635DC00E5AA34 /* MainTabBarController.swift in Sources */,
 				57D78265267630AE0041FB9A /* AlertPresentable.swift in Sources */,

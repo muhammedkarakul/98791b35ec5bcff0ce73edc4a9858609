@@ -13,9 +13,10 @@ struct Spacecraft: Codable {
     let speed: Int64
     let capacity: Int64
     let damageCapacity: Int64
+    let currentStation: Station
 }
 
-extension Spacecraft: CoreDataAccessible {
+extension Spacecraft: Saveable {
     var entityName: String {
         "SpacecraftEntity"
     }
