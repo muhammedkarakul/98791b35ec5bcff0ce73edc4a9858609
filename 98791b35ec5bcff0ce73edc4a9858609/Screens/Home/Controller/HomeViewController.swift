@@ -15,12 +15,14 @@ final class HomeViewController: BaseViewController<HomeView> {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.getStations()
         viewModel.configureHomeView(baseView)
     }
     
     // MARK: - Setup
     override func linkInteractor() {
         super.linkInteractor()
+        viewModel.delegate = self
         baseView.setCollectionViewDelegate(self, andDataSource: self)
     }
     
@@ -42,13 +44,27 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! StationCollectionViewCell
-        viewModel.configureStationCollectionViewCell(cell)
+        viewModel.configureStationCollectionViewCell(cell, forIndexPath: indexPath)
         return cell
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: view.bounds.width, height: view.bounds.width)
+    }
+}
+
+// MARK: - HomeViewModelDelegate
+extension HomeViewController: HomeViewModelDelegate {
+    func didErrorOccured(_ error: Error?) {
+        if let error = error {
+            showError(message: error.localizedDescription)
+        }
+    }
+    
+    func didResponseFetched(_ response: [Station]?) {
+        baseView.refresh()
     }
 }

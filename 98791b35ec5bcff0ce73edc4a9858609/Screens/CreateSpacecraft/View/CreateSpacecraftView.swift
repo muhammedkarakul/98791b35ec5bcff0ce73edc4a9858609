@@ -21,20 +21,20 @@ final class CreateSpacecraftView: BaseView {
         nameTextField.text
     }
     
-    var durability: Int16 {
-        Int16(titledSliderViews[0].sliderValue)
+    var durability: Int64 {
+        Int64(titledSliderViews[0].sliderValue)
     }
     
-    var speed: Int16 {
-        Int16(titledSliderViews[1].sliderValue)
+    var speed: Int64 {
+        Int64(titledSliderViews[1].sliderValue)
     }
     
-    var capacity: Int16 {
-        Int16(titledSliderViews[2].sliderValue)
+    var capacity: Int64 {
+        Int64(titledSliderViews[2].sliderValue)
     }
     
     var sumOfSliderValues: Float {
-        titledSliderViews.reduce(0.0) { $0 + $1.sliderValue }
+        titledSliderViews.reduce(0) { $0 + $1.sliderValue }
     }
     
     // MARK: - UI

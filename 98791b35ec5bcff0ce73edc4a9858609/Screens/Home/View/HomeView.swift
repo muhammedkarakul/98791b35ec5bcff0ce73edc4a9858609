@@ -165,4 +165,8 @@ final class HomeView: BaseView {
         collectionView.delegate = delegate
         collectionView.dataSource = dataSource
     }
+    
+    func refresh() {
+        collectionView.reloadData()
+    }
 }

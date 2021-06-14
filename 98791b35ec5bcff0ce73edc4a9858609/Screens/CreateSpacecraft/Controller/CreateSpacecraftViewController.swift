@@ -59,7 +59,7 @@ extension CreateSpacecraftViewController: CreateSpacecraftViewDelegate {
                                          speed: baseView.speed,
                                          capacity: baseView.capacity) { error in
                     if let error = error {
-                        print("Uzay aracı kaydedilemedi. \(error), \(error.userInfo)")
+                        showError(message: error.localizedDescription)
                         return
                     }
                     viewModel.setUserDefaultsValue(true, forKey: .isSpaceCraftCreated)
