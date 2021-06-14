@@ -20,7 +20,7 @@ extension CoreDataAccessible {
     }
     
     func fetchEntity(withName entityName: String, completion: ([Any]?, Error?) -> Void) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "StationEntity")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         
         do {
             let fetch = try managedContext?.fetch(request)

@@ -10,7 +10,7 @@ import CoreData
 final class HomeViewModel: CoreDataAccessible {
     // MARK: - Properties
     
-    private var stations: [StationEntity]?
+    private var stations: [Station]?
     
     private var spacecraft: Spacecraft?
     
@@ -22,7 +22,7 @@ final class HomeViewModel: CoreDataAccessible {
     func configureHomeView(_ view: HomeView) {
         view.spacecraftName = spacecraft?.name
         view.damageCapacity = spacecraft?.damageCapacity
-        view.stationName = spacecraft?.currentStation.name
+        view.stationName = "Dünya"
         view.time = 49
     }
     
@@ -34,23 +34,27 @@ final class HomeViewModel: CoreDataAccessible {
     }
     
     func fetchStations(completion: (Error?) -> Void) {
-        fetchEntity(withName: "StationEntity") { entity, error in
+        fetchEntity(withName: "Station") { entity, error in
             if let error = error {
                 completion(error)
                 return
             }
-            stations = entity as? [StationEntity]
+            guard let managedObjects = entity as? [NSManagedObject] else { return }
+            
+            stations = managedObjects.map { Station(fromManagedObject: $0) }
+            
             completion(nil)
         }
     }
     
     func fetchSpacecraft(completion: (Error?) -> Void) {
-        fetchEntity(withName: "SpacecraftEntity") { entity, error in
+        fetchEntity(withName: "Spacecraft") { entity, error in
             if let error = error {
                 completion(error)
                 return
             }
-            spacecraft = entity?.first as? Spacecraft
+            guard let managedObject = entity?.first as? NSManagedObject else { return }
+            spacecraft = Spacecraft(fromManagedObject: managedObject)
             completion(nil)
         }
     }

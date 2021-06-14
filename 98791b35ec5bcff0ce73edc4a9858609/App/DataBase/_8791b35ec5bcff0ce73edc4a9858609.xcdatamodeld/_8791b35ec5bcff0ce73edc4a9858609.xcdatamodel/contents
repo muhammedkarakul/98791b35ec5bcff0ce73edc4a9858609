@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="SpacecraftEntity" representedClassName="SpacecraftEntity" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Spacecraft" representedClassName="Spacecraft" syncable="YES">
         <attribute name="capacity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="damageCapacity" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="durability" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="speed" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="currentStation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StationEntity"/>
     </entity>
-    <entity name="StationEntity" representedClassName="StationEntity" syncable="YES" codeGenerationType="class">
+    <entity name="Station" representedClassName="Station" syncable="YES">
         <attribute name="capacity" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -17,7 +16,7 @@
         <attribute name="stock" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="SpacecraftEntity" positionX="-63" positionY="-18" width="128" height="119"/>
-        <element name="StationEntity" positionX="-54" positionY="36" width="128" height="119"/>
+        <element name="Spacecraft" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="Station" positionX="-54" positionY="36" width="128" height="119"/>
     </elements>
 </model>

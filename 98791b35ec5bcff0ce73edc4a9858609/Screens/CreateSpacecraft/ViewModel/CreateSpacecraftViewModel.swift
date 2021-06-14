@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import CoreData
 
-final class CreateSpacecraftViewModel: UserDefaultsAccessible {
+final class CreateSpacecraftViewModel: UserDefaultsAccessible, CoreDataAccessible {
     
     // MARK: Properties
     private var stations: [Station]?
@@ -19,14 +20,11 @@ final class CreateSpacecraftViewModel: UserDefaultsAccessible {
                         capacity: Int64,
                         completion: (Error?) -> Void) {
         
-        guard let earth = stations?.filter({ $0.name == "Dünya" }).first else { return }
-        
         let spacecraft = Spacecraft(name: name,
                                     durability: durability,
                                     speed: speed,
                                     capacity: capacity,
-                                    damageCapacity: 100,
-                                    currentStation: earth)
+                                    damageCapacity: 100)
         
         spacecraft.save(completion: completion)
     }
