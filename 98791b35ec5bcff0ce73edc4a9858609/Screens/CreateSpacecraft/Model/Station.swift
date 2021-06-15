@@ -15,6 +15,7 @@ class Station: Codable {
     let stock: Int64
     let need: Int64
     var isFavorite: Bool?
+    var isCurrent: Bool?
     
     init(name: String?,
          coordinateX: Float,
@@ -22,7 +23,8 @@ class Station: Codable {
          capacity: Int64,
          stock: Int64,
          need: Int64,
-         isFavorite: Bool) {
+         isFavorite: Bool,
+         isCurrent: Bool) {
         
         self.name = name
         self.coordinateX = coordinateX
@@ -31,6 +33,7 @@ class Station: Codable {
         self.stock = stock
         self.need = need
         self.isFavorite = isFavorite
+        self.isCurrent = isCurrent
     }
     
     init(fromManagedObject managedObject: NSManagedObject) {
@@ -41,6 +44,7 @@ class Station: Codable {
         capacity = managedObject.value(forKey: "capacity") as! Int64
         need = managedObject.value(forKey: "need") as! Int64
         isFavorite = managedObject.value(forKey: "isFavorite") as? Bool
+        isCurrent = managedObject.value(forKey: "isCurrent") as? Bool
     }
 }
 
@@ -56,6 +60,7 @@ extension Station: Saveable {
          "capacity" : capacity,
          "stock" : stock,
          "need" : need,
-         "isFavorite" : isFavorite ?? false]
+         "isFavorite" : isFavorite ?? false,
+         "isCurrent" : isCurrent ?? false]
     }
 }

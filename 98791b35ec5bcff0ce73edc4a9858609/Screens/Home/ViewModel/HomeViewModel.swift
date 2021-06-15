@@ -18,6 +18,10 @@ final class HomeViewModel: CoreDataAccessible {
         stations?.count ?? 0
     }
     
+    var configuredTitle: String? {
+        "UGS: \(spacecraft?.ugs ?? .zero)  EUS: \(spacecraft?.eus ?? .zero) DS: \(spacecraft?.ds ?? .zero)"
+    }
+    
     // MARK: - Methods
     func configureHomeView(_ view: HomeView) {
         view.spacecraftName = spacecraft?.name

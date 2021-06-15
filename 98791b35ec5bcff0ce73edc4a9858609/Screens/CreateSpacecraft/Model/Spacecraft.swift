@@ -36,6 +36,7 @@ struct Spacecraft: Codable {
     }
 }
 
+// MARK: - Saveable
 extension Spacecraft: Saveable {
     var entityName: String {
         "Spacecraft"
@@ -47,5 +48,19 @@ extension Spacecraft: Saveable {
          "speed" : speed,
          "capacity" : capacity,
          "damageCapacity" : damageCapacity]
+    }
+}
+
+extension Spacecraft {
+    var ugs: Int64 {
+        capacity * 10000
+    }
+    
+    var eus: Int64 {
+        speed * 50
+    }
+    
+    var ds: Int64 {
+        durability * 10000
     }
 }

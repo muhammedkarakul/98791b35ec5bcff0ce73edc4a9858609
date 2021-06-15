@@ -13,6 +13,7 @@
         <attribute name="capacity" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateX" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateY" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="need" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -20,6 +21,6 @@
     </entity>
     <elements>
         <element name="Spacecraft" positionX="-63" positionY="-18" width="128" height="118"/>
-        <element name="Station" positionX="194.7872314453125" positionY="26.2021484375" width="128" height="148"/>
+        <element name="Station" positionX="194.7872314453125" positionY="26.2021484375" width="128" height="149"/>
     </elements>
 </model>

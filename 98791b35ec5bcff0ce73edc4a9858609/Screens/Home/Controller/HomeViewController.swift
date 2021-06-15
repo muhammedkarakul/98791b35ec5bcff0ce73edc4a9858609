@@ -19,6 +19,11 @@ final class HomeViewController: BaseViewController<HomeView> {
         fetchSpacecraft()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = viewModel.configuredTitle
+    }
+    
     // MARK: - Setup
     override func linkInteractor() {
         super.linkInteractor()
