@@ -31,6 +31,7 @@ final class HomeViewModel: CoreDataAccessible {
         cell.capacity = "\(station.capacity)/\(station.stock)"
         cell.universalSpaceTime = "(\(station.coordinateX), \(station.coordinateY))"
         cell.name = station.name
+        cell.isFavorite = station.isFavorite ?? false
     }
     
     func fetchStations(completion: (Error?) -> Void) {
@@ -57,5 +58,11 @@ final class HomeViewModel: CoreDataAccessible {
             spacecraft = Spacecraft(fromManagedObject: managedObject)
             completion(nil)
         }
+    }
+    
+    func addFavorite(forIndexPath indexPath: IndexPath, completion: (Error?) -> Void) {
+        guard let station = stations?[indexPath.item] else { return }
+        station.isFavorite?.toggle()
+        station.update(value: station.isFavorite ?? false, forKey: "isFavorite", completion: completion)
     }
 }

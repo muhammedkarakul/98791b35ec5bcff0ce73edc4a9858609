@@ -43,6 +43,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! StationCollectionViewCell
+        cell.delegate = self
         viewModel.configureStationCollectionViewCell(cell, forIndexPath: indexPath)
         return cell
     }
@@ -75,5 +76,23 @@ extension HomeViewController {
             }
             viewModel.configureHomeView(baseView)
         }
+    }
+}
+
+// MARK: - StationCollectionViewCellDelegate
+extension HomeViewController: StationCollectionViewCellDelegate {
+    func stationCollectionViewCell(_ cell: StationCollectionViewCell, didFavoriteButtonTapped button: UIButton) {
+        guard let indexPath = baseView.indexPathForCell(cell) else { return }
+        viewModel.addFavorite(forIndexPath: indexPath) { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            self.baseView.refresh()
+        }
+    }
+    
+    func didTravelButtonTapped(_ sender: UIButton) {
+        print("TRAVEL BUTTON TAPPED")
     }
 }

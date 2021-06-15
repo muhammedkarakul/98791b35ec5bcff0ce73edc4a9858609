@@ -14,7 +14,12 @@ struct Spacecraft: Codable {
     let capacity: Int64
     let damageCapacity: Int64
     
-    init(name: String?, durability: Int64, speed: Int64, capacity: Int64, damageCapacity: Int64) {
+    init(name: String?,
+         durability: Int64,
+         speed: Int64,
+         capacity: Int64,
+         damageCapacity: Int64) {
+        
         self.name = name
         self.durability = durability
         self.speed = speed

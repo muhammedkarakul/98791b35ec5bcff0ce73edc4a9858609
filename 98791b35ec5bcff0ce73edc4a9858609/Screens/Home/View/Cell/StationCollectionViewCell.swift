@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol StationCollectionViewCellDelegate: AnyObject {
+    func stationCollectionViewCell(_ cell: StationCollectionViewCell, didFavoriteButtonTapped button: UIButton)
+    func didTravelButtonTapped(_ sender: UIButton)
+}
+
 final class StationCollectionViewCell: BaseCollectionViewCell {
     // MARK: Properties
+    weak var delegate: StationCollectionViewCellDelegate?
+    
     var capacity: String? {
         didSet {
             capacityLabel.text = capacity
@@ -24,6 +31,12 @@ final class StationCollectionViewCell: BaseCollectionViewCell {
     var name: String? {
         didSet {
             nameLabel.text = name
+        }
+    }
+    
+    var isFavorite: Bool = false {
+        didSet {
+            addFavoriteButton.tintColor = isFavorite ? .systemBlue : .systemGray
         }
     }
     
@@ -70,6 +83,12 @@ final class StationCollectionViewCell: BaseCollectionViewCell {
     }()
     
     // MARK: Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        addFavoriteButton.addTarget(self, action: #selector(didFavoriteButtonTapped(_:)), for: .touchUpInside)
+        travelButton.addTarget(self, action: #selector(didTravelButtonTapped(_:)), for: .touchUpInside)
+    }
+    
     override func prepareLayout() {
         super.prepareLayout()
         
@@ -139,5 +158,18 @@ final class StationCollectionViewCell: BaseCollectionViewCell {
             make.height.equalTo(32.0)
             make.bottom.equalTo(-16.0)
         }
+    }
+}
+
+// MARK: - Actions
+extension StationCollectionViewCell {
+    @objc
+    private func didFavoriteButtonTapped(_ sender: UIButton) {
+        delegate?.stationCollectionViewCell(self, didFavoriteButtonTapped: sender)
+    }
+    
+    @objc
+    private func didTravelButtonTapped(_ sender: UIButton) {
+        delegate?.didTravelButtonTapped(sender)
     }
 }

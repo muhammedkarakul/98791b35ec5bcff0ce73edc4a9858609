@@ -9,6 +9,7 @@ import CoreData
 import UIKit
 
 protocol Saveable: CoreDataAccessible {
+    var name: String? { get }
     var entityName: String { get }
     var data: [String : Any] { get }
 }
@@ -30,6 +31,27 @@ extension Saveable {
             completion(nil)
         } catch let error as NSError {
             debugPrint("The data could not be saved to the database. \(error)")
+            completion(error)
+        }
+    }
+    
+    func update(value: Any, forKey key: String, completion: (Error?) -> Void) {
+        let context = managedContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        
+        guard let name = name else { return }
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            guard let results = try context?.fetch(fetchRequest) else { return }
+            
+            if results.count > 0 {
+                results.first?.setValue(value, forKey: key)
+                try context?.save()
+            }
+            completion(nil)
+        } catch {
             completion(error)
         }
     }

@@ -171,4 +171,8 @@ final class HomeView: BaseView {
             self.collectionView.reloadData()
         }
     }
+    
+    func indexPathForCell(_ cell: UICollectionViewCell) -> IndexPath? {
+        collectionView.indexPath(for: cell)
+    }
 }
