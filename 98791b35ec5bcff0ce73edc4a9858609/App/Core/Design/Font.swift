@@ -9,4 +9,5 @@ import UIKit
 
 extension UIFont {
     public static var title: UIFont { UIFont.systemFont(ofSize: 24.0) }
+    public static var small: UIFont { UIFont.systemFont(ofSize: 13.0) }
 }
