@@ -75,4 +75,13 @@ extension UserDefaultsAccessible {
             return false
         }
     }
+    
+    var isStationsFetchedFormAPI: Bool {
+        do {
+            return try getUserDefaultValue(Bool.self, forKey: .isStationsFetchedFromAPI)
+        } catch {
+            debugPrint("isStationsFetchedFormAPI data not found. \(error)")
+            return false
+        }
+    }
 }

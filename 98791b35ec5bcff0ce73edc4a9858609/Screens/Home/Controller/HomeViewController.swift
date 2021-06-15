@@ -17,9 +17,6 @@ final class HomeViewController: BaseViewController<HomeView> {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchStations()
-        fetchSpacecraft()
-        
         count = viewModel.dsTimerInterval
         
         Timer.scheduledTimer(timeInterval: 1.0,
@@ -31,6 +28,8 @@ final class HomeViewController: BaseViewController<HomeView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchStations()
+        fetchSpacecraft()
         navigationItem.title = viewModel.configuredTitle
     }
     
@@ -38,12 +37,21 @@ final class HomeViewController: BaseViewController<HomeView> {
     override func linkInteractor() {
         super.linkInteractor()
         baseView.setCollectionViewDelegate(self, andDataSource: self)
+        addGameOverObserver()
     }
     
     override func configureAppearance() {
         super.configureAppearance()
         navigationItem.title = "UGS: 00000  EUS: 00000 DS: 00000"
         tabBarItem = UITabBarItem(title: "İstasyon", image: .rocket, tag: 0)
+    }
+    
+    // MARK: - Methods
+    private func addGameOverObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(gameOver),
+                                               name: .gameOver,
+                                               object: nil)
     }
 }
 
@@ -109,14 +117,14 @@ extension HomeViewController: StationCollectionViewCellDelegate {
     
     func stationCollectionViewCell(_ cell: StationCollectionViewCell, didTravelButtonTapped button: UIButton) {
         guard let indexPath = baseView.indexPathForCell(cell) else { return }
-        viewModel.setCurrent(forIndexPath: indexPath) { error in
+        viewModel.setCurrent(forIndexPath: indexPath) { [unowned self] error in
             if let error = error {
-                self.showError(message: error.localizedDescription)
+                showError(message: error.localizedDescription)
                 return
             }
-            self.viewModel.configureHomeView(self.baseView)
-            self.navigationItem.title = self.viewModel.configuredTitle
-            self.baseView.refresh()
+            viewModel.configureHomeView(baseView)
+            navigationItem.title = viewModel.configuredTitle
+            baseView.refresh()
         }
     }
 }
@@ -131,12 +139,29 @@ extension HomeViewController {
         } else {
             viewModel.decreaseDamageCapacity() { [unowned self] error in
                 if let error = error {
-                    self.showError(message: error.localizedDescription)
+                    showError(message: error.localizedDescription)
                     return
                 }
                 viewModel.configureHomeView(baseView)
                 count = viewModel.dsTimerInterval
             }
         }
+    }
+    
+    @objc
+    private func gameOver() {
+        let defaultAction = UIAlertAction(title: "Tamam", style: .default) { [unowned self] _ in
+            viewModel.resetAllCoreData() { error in
+                if let error = error {
+                    showError(message: error.localizedDescription)
+                    return
+                }
+                viewModel.appDelegate?.createWindow()
+            }
+        }
+        showAlert(title: "Oyun Bitti",
+                  message: "Tebrikler oyunu tamamladın! Yeniden oynamak ister misin?",
+                  prefferedStyle: .alert,
+                  actions: defaultAction)
     }
 }

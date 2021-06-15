@@ -54,7 +54,22 @@ extension MyFavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MyFavoritesTableViewCell
+        cell.delegate = self
         viewModel.configureMyFavoriteTableViewCell(cell, forIndexPath: indexPath)
         return cell
+    }
+}
+
+// MARK: - MyFavoritesTableViewCellDelegate
+extension MyFavoritesViewController: MyFavoritesTableViewCellDelegate {
+    func myFavoritesTableViewCell(_ cell: MyFavoritesTableViewCell, didFavoriteButtonTapped button: UIButton) {
+        guard let indexPath = baseView.indexPathForCell(cell) else { return }
+        viewModel.addFavorite(forIndexPath: indexPath) { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            self.baseView.refresh()
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import CoreData
 
-final class HomeViewModel: CoreDataAccessible {
+final class HomeViewModel: CoreDataAccessible, UserDefaultsAccessible {
     // MARK: - Properties
     
     private var stations: [Station]? {
@@ -32,12 +32,15 @@ final class HomeViewModel: CoreDataAccessible {
         (spacecraft?.ds ?? .zero) / 1000
     }
     
+    var isAllStationsLoaded: Bool {
+        stations?.filter({  $0.capacity != $0.stock }).isEmpty ?? false
+    }
+    
     // MARK: - Methods
     func configureHomeView(_ view: HomeView) {
         view.spacecraftName = spacecraft?.name
         view.damageCapacity = spacecraft?.damageCapacity
         view.stationName = currentStation?.name
-        view.time = dsTimerInterval
         view.layoutIfNeeded()
     }
     
@@ -99,6 +102,10 @@ final class HomeViewModel: CoreDataAccessible {
         station.isCurrent?.toggle()
         stations?[indexPath.item] = station
         station.update(value: station.isCurrent ?? false, forKey: "isCurrent", completion: completion)
+        
+        if isAllStationsLoaded {
+            NotificationCenter.default.post(name: .gameOver, object: nil)
+        }
     }
     
     private func resetIsCurrentForAllStations(completion: @escaping (Error?) -> Void) {
@@ -109,7 +116,30 @@ final class HomeViewModel: CoreDataAccessible {
     }
     
     func decreaseDamageCapacity(completion: @escaping (Error?) -> Void) {
-        spacecraft?.damageCapacity -= 1
-        spacecraft?.update(value: spacecraft?.damageCapacity ?? .zero, forKey: "damageCapacity", completion: completion)
+        guard let spacecraft = spacecraft else { return }
+        if spacecraft.damageCapacity > 0 {
+            spacecraft.damageCapacity -= 1
+            spacecraft.update(value: spacecraft.damageCapacity, forKey: "damageCapacity", completion: completion)
+        } else {
+            NotificationCenter.default.post(name: .gameOver, object: nil)
+        }
+    }
+    
+    func resetAllCoreData(completion: @escaping (Error?) -> Void) {
+        let entityNames = appDelegate?.persistentContainer.managedObjectModel.entities.map({ $0.name!})
+        entityNames?.forEach { entityName in
+            let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+
+            do {
+                try self.managedContext?.execute(deleteRequest)
+                try self.managedContext?.save()
+                setUserDefaultsValue(false, forKey: .isStationsFetchedFromAPI)
+                setUserDefaultsValue(false, forKey: .isSpaceCraftCreated)
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }
     }
 }

@@ -34,6 +34,10 @@ final class CreateSpacecraftViewModel: UserDefaultsAccessible, CoreDataAccessibl
     
     func getStations(completion: @escaping (Error?) -> Void) {
         guard let url = URL(string: "https://run.mocky.io/v3/e7211664-cbb6-4357-9c9d-f12bf8bab2e2") else { return }
+        if isStationsFetchedFormAPI {
+            return
+        }
+        self.setUserDefaultsValue(true, forKey: .isStationsFetchedFromAPI)
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(error)
@@ -56,5 +60,12 @@ final class CreateSpacecraftViewModel: UserDefaultsAccessible, CoreDataAccessibl
                 completion(error)
             }
         }.resume()
+    }
+    
+    func resetCreateSpacecraftView(_ view: CreateSpacecraftView) {
+        view.name = ""
+        view.durability = .zero
+        view.speed = .zero
+        view.capacity = .zero
     }
 }

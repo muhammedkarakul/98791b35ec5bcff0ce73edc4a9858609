@@ -21,9 +21,10 @@ final class CreateSpacecraftViewController: BaseViewController<CreateSpacecraftV
     }
     
     // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getStations()
+        viewModel.resetCreateSpacecraftView(baseView)
     }
     
     // MARK: - Setup

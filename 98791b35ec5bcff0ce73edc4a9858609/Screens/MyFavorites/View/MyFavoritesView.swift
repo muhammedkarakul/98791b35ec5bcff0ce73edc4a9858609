@@ -34,4 +34,8 @@ final class MyFavoritesView: BaseView {
     func refresh() {
         tableView.reloadData()
     }
+    
+    func indexPathForCell(_ cell: UITableViewCell) -> IndexPath? {
+        tableView.indexPath(for: cell)
+    }
 }

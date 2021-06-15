@@ -25,7 +25,12 @@ final class TitledSliderView: BaseView {
     }
     
     var sliderValue: Float {
-        slider.value
+        set {
+            slider.value = newValue
+        }
+        get  {
+            slider.value
+        }
     }
     
     // MARK: - UI

@@ -12,13 +12,14 @@ final class MyFavoritesViewModel: CoreDataAccessible {
     private var stations: [Station]? {
         didSet {
             earthStation = stations?.filter({ $0.name == "Dünya"}).first
-            favoriteStations = stations?.filter({  $0.isFavorite ?? false })
         }
     }
     
     private var earthStation: Station?
     
-    private var favoriteStations: [Station]?
+    private var favoriteStations: [Station]? {
+        stations?.filter({  $0.isFavorite ?? false })
+    }
     
     var numberOfItems: Int {
         favoriteStations?.count ?? .zero
@@ -42,5 +43,11 @@ final class MyFavoritesViewModel: CoreDataAccessible {
             
             completion(nil)
         }
+    }
+    
+    func addFavorite(forIndexPath indexPath: IndexPath, completion: @escaping (Error?) -> Void) {
+        guard let station = favoriteStations?[indexPath.item] else { return }
+        station.isFavorite?.toggle()
+        station.update(value: station.isFavorite ?? false, forKey: "isFavorite", completion: completion)
     }
 }

@@ -17,7 +17,11 @@ extension AlertPresentable where Self: UIViewController {
         showAlert(title: "Hata", message: message, prefferedStyle: .alert, actions: defaultAction)
     }
     
-    private func showAlert(title: String, message: String, prefferedStyle: UIAlertController.Style, actions: UIAlertAction...) {
+    func showAlert(title: String,
+                   message: String,
+                   prefferedStyle: UIAlertController.Style,
+                   actions: UIAlertAction...) {
+        
         let alert = UIAlertController(title: title, message: message, preferredStyle: prefferedStyle)
         actions.forEach { alert.addAction($0)}
         DispatchQueue.main.async {

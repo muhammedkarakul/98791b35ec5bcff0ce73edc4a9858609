@@ -18,19 +18,39 @@ final class CreateSpacecraftView: BaseView {
     weak var delegate: CreateSpacecraftViewDelegate?
     
     var name: String? {
-        nameTextField.text
+        set {
+            nameTextField.text = newValue
+        }
+        get {
+            nameTextField.text
+        }
     }
     
     var durability: Int64 {
-        Int64(titledSliderViews[0].sliderValue)
+        set {
+            titledSliderViews[0].sliderValue = Float(newValue)
+        }
+        get {
+            Int64(titledSliderViews[0].sliderValue)
+        }
     }
     
     var speed: Int64 {
-        Int64(titledSliderViews[1].sliderValue)
+        set {
+            titledSliderViews[1].sliderValue = Float(newValue)
+        }
+        get {
+            Int64(titledSliderViews[1].sliderValue)
+        }
     }
     
     var capacity: Int64 {
-        Int64(titledSliderViews[2].sliderValue)
+        set {
+            titledSliderViews[2].sliderValue = Float(newValue)
+        }
+        get {
+            Int64(titledSliderViews[2].sliderValue)
+        }
     }
     
     var sumOfSliderValues: Float {

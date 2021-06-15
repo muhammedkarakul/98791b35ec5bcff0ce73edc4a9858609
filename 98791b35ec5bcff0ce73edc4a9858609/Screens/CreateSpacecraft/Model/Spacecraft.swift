@@ -69,15 +69,19 @@ extension Spacecraft: Saveable {
 // MARK: - Methods
 extension Spacecraft {
     func travel(to station: Station, from currentStation: Station) {
-        ugs = ugs - station.need
-        update(value: ugs, forKey: "ugs")
-        
-        eus = eus - station.getDistanceToStation(currentStation)
-        update(value: eus, forKey: "eus")
-        
-        station.need = .zero
-        station.stock = station.capacity
-        station.update(value: station.need, forKey: "need")
-        station.update(value: station.stock, forKey: "stock")
+        if ugs < station.need || eus < station.getDistanceToStation(currentStation) {
+            NotificationCenter.default.post(name: .gameOver, object: nil)
+        } else {
+            ugs = ugs - station.need
+            update(value: ugs, forKey: "ugs")
+            
+            eus = eus - station.getDistanceToStation(currentStation)
+            update(value: eus, forKey: "eus")
+            
+            station.need = .zero
+            station.stock = station.capacity
+            station.update(value: station.need, forKey: "need")
+            station.update(value: station.stock, forKey: "stock")
+        }
     }
 }

@@ -51,6 +51,7 @@ final class HomeView: BaseView {
     
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
+        label.text = "0s"
         label.layer.borderWidth = 1.0
         if #available(iOS 13.0, *) {
             label.layer.borderColor = UIColor.label.cgColor

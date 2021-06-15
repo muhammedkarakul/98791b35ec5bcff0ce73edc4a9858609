@@ -9,4 +9,5 @@ import Foundation
 
 enum DefaultName: String {
     case isSpaceCraftCreated
+    case isStationsFetchedFromAPI
 }

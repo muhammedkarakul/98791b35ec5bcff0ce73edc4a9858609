@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol MyFavoritesTableViewCellDelegate: AnyObject {
+    func myFavoritesTableViewCell(_ cell: MyFavoritesTableViewCell, didFavoriteButtonTapped button: UIButton)
+}
+
 final class MyFavoritesTableViewCell: BaseTableViewCell {
     // MARK: - Properties
+    weak var delegate: MyFavoritesTableViewCellDelegate?
+    
     var title: String? {
         didSet {
             titleLabel.text = title
@@ -37,6 +43,11 @@ final class MyFavoritesTableViewCell: BaseTableViewCell {
     }()
     
     // MARK: - Setup
+    override func linkInteractor() {
+        super.linkInteractor()
+        favoriteButton.addTarget(self, action: #selector(didFavoriteButtonTapped(_:)), for: .touchUpInside)
+    }
+    
     override func prepareLayout() {
         super.prepareLayout()
         setupFavoriteButtonLayout()
@@ -71,5 +82,13 @@ final class MyFavoritesTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(favoriteButton.snp.leading).offset(-8.0)
             make.bottom.equalTo(-16.0)
         }
+    }
+}
+
+// MARK: - Actions
+extension MyFavoritesTableViewCell {
+    @objc
+    private func didFavoriteButtonTapped(_ sender: UIButton) {
+        delegate?.myFavoritesTableViewCell(self, didFavoriteButtonTapped: sender)
     }
 }
