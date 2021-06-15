@@ -11,11 +11,12 @@ final class MainTabBarController: UITabBarController {
     
     // MARK: - Properties
     private lazy var homeNavigationController = UINavigationController(rootViewController: HomeViewController())
+    private lazy var myFavoritesNavigationController = UINavigationController(rootViewController: MyFavoritesViewController())
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [homeNavigationController]
+        viewControllers = [homeNavigationController, myFavoritesNavigationController]
     }
 
     override func viewWillAppear(_ animated: Bool) {

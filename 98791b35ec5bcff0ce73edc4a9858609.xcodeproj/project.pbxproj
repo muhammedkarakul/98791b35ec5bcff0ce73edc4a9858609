@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		571C90AD26782E0900B1BF71 /* MyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C90AC26782E0900B1BF71 /* MyFavoritesViewController.swift */; };
+		571C90B026782E2F00B1BF71 /* MyFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571C90AF26782E2F00B1BF71 /* MyFavoritesView.swift */; };
 		573014BF267696530013456B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014BE267696530013456B /* HomeViewModel.swift */; };
 		573014C22676987A0013456B /* StationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014C12676987A0013456B /* StationCollectionViewCell.swift */; };
 		573014C826769D030013456B /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573014C726769D030013456B /* BaseCollectionViewCell.swift */; };
@@ -41,6 +43,8 @@
 		02406ED21C74563AD9EE10A8 /* Pods_98791b35ec5bcff0ce73edc4a9858609.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_98791b35ec5bcff0ce73edc4a9858609.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FBB600733D39183B1A945B2 /* Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig"; path = "Target Support Files/Pods-98791b35ec5bcff0ce73edc4a9858609/Pods-98791b35ec5bcff0ce73edc4a9858609.release.xcconfig"; sourceTree = "<group>"; };
 		4859E7AD52EA6A38C0B3FEEB /* Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig"; path = "Target Support Files/Pods-98791b35ec5bcff0ce73edc4a9858609/Pods-98791b35ec5bcff0ce73edc4a9858609.debug.xcconfig"; sourceTree = "<group>"; };
+		571C90AC26782E0900B1BF71 /* MyFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesViewController.swift; sourceTree = "<group>"; };
+		571C90AF26782E2F00B1BF71 /* MyFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoritesView.swift; sourceTree = "<group>"; };
 		573014BE267696530013456B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		573014C12676987A0013456B /* StationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationCollectionViewCell.swift; sourceTree = "<group>"; };
 		573014C726769D030013456B /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -84,6 +88,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		571C90AA26782DE500B1BF71 /* MyFavorites */ = {
+			isa = PBXGroup;
+			children = (
+				571C90AE26782E2700B1BF71 /* View */,
+				571C90AB26782DF100B1BF71 /* Controller */,
+			);
+			path = MyFavorites;
+			sourceTree = "<group>";
+		};
+		571C90AB26782DF100B1BF71 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				571C90AC26782E0900B1BF71 /* MyFavoritesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		571C90AE26782E2700B1BF71 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				571C90AF26782E2F00B1BF71 /* MyFavoritesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		573014BD267696470013456B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +308,7 @@
 		579429682674DB9B00ACF6AC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				571C90AA26782DE500B1BF71 /* MyFavorites */,
 				578F3B04267653E900E5AA34 /* Main */,
 				578F3AFB2676359B00E5AA34 /* Home */,
 				57386EF12674E11F00EF0CC5 /* CreateSpacecraft */,
@@ -459,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571C90B026782E2F00B1BF71 /* MyFavoritesView.swift in Sources */,
 				573014BF267696530013456B /* HomeViewModel.swift in Sources */,
 				57D538F62678071A00E7204E /* Saveable.swift in Sources */,
 				579429532674D55F00ACF6AC /* CreateSpacecraftViewController.swift in Sources */,
@@ -483,6 +514,7 @@
 				57D7825D2674F5D60041FB9A /* CreateSpacecraftViewModel.swift in Sources */,
 				578F3B0926765E3500E5AA34 /* UserDefaultError.swift in Sources */,
 				5794294F2674D55F00ACF6AC /* AppDelegate.swift in Sources */,
+				571C90AD26782E0900B1BF71 /* MyFavoritesViewController.swift in Sources */,
 				578F3B00267651EC00E5AA34 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
