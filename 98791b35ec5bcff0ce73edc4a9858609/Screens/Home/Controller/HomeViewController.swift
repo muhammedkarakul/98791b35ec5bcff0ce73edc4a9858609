@@ -12,11 +12,21 @@ final class HomeViewController: BaseViewController<HomeView> {
     // MARK: - Properties
     private let viewModel = HomeViewModel()
     
+    var count: Int64 = 0
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchStations()
         fetchSpacecraft()
+        
+        count = viewModel.dsTimerInterval
+        
+        Timer.scheduledTimer(timeInterval: 1.0,
+                             target: self,
+                             selector: #selector(update),
+                             userInfo: nil,
+                             repeats: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +42,7 @@ final class HomeViewController: BaseViewController<HomeView> {
     
     override func configureAppearance() {
         super.configureAppearance()
-        title = "UGS: 00000  EUS: 00000 DS: 00000"
+        navigationItem.title = "UGS: 00000  EUS: 00000 DS: 00000"
         tabBarItem = UITabBarItem(title: "İstasyon", image: .rocket, tag: 0)
     }
 }
@@ -97,7 +107,36 @@ extension HomeViewController: StationCollectionViewCellDelegate {
         }
     }
     
-    func didTravelButtonTapped(_ sender: UIButton) {
-        print("TRAVEL BUTTON TAPPED")
+    func stationCollectionViewCell(_ cell: StationCollectionViewCell, didTravelButtonTapped button: UIButton) {
+        guard let indexPath = baseView.indexPathForCell(cell) else { return }
+        viewModel.setCurrent(forIndexPath: indexPath) { error in
+            if let error = error {
+                self.showError(message: error.localizedDescription)
+                return
+            }
+            self.viewModel.configureHomeView(self.baseView)
+            self.navigationItem.title = self.viewModel.configuredTitle
+            self.baseView.refresh()
+        }
+    }
+}
+
+// MARK: - Actions
+extension HomeViewController {
+    @objc
+    private func update() {
+        if count > 0 {
+            baseView.time = count
+            count -= 1
+        } else {
+            viewModel.decreaseDamageCapacity() { [unowned self] error in
+                if let error = error {
+                    self.showError(message: error.localizedDescription)
+                    return
+                }
+                viewModel.configureHomeView(baseView)
+                count = viewModel.dsTimerInterval
+            }
+        }
     }
 }

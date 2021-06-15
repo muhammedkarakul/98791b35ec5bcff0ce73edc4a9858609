@@ -10,7 +10,13 @@ import CoreData
 final class HomeViewModel: CoreDataAccessible {
     // MARK: - Properties
     
-    private var stations: [Station]?
+    private var stations: [Station]? {
+        didSet {
+            currentStation = stations?.filter({ $0.isCurrent ?? false }).last
+        }
+    }
+    
+    private var currentStation: Station?
     
     private var spacecraft: Spacecraft?
     
@@ -22,18 +28,30 @@ final class HomeViewModel: CoreDataAccessible {
         "UGS: \(spacecraft?.ugs ?? .zero)  EUS: \(spacecraft?.eus ?? .zero) DS: \(spacecraft?.ds ?? .zero)"
     }
     
+    var dsTimerInterval: Int64 {
+        (spacecraft?.ds ?? .zero) / 1000
+    }
+    
     // MARK: - Methods
     func configureHomeView(_ view: HomeView) {
         view.spacecraftName = spacecraft?.name
         view.damageCapacity = spacecraft?.damageCapacity
-        view.stationName = "Dünya"
-        view.time = 49
+        view.stationName = currentStation?.name
+        view.time = dsTimerInterval
+        view.layoutIfNeeded()
     }
     
     func configureStationCollectionViewCell(_ cell: StationCollectionViewCell, forIndexPath indexPath: IndexPath) {
-        guard let station = stations?[indexPath.item] else { return }
+        guard let station = stations?[indexPath.item], let currentStation = currentStation else { return }
+        if station == currentStation || station.need == 0 {
+            cell.isUserInteractionEnabled = false
+            cell.contentView.alpha = 0.5
+        } else {
+            cell.isUserInteractionEnabled = true
+            cell.contentView.alpha = 1.0
+        }
         cell.capacity = "\(station.capacity)/\(station.stock)"
-        cell.universalSpaceTime = "(\(station.coordinateX), \(station.coordinateY))"
+        cell.universalSpaceTime = "\(station.getDistanceToStation(currentStation))EUS"
         cell.name = station.name
         cell.isFavorite = station.isFavorite ?? false
     }
@@ -64,9 +82,34 @@ final class HomeViewModel: CoreDataAccessible {
         }
     }
     
-    func addFavorite(forIndexPath indexPath: IndexPath, completion: (Error?) -> Void) {
+    func addFavorite(forIndexPath indexPath: IndexPath, completion: @escaping (Error?) -> Void) {
         guard let station = stations?[indexPath.item] else { return }
         station.isFavorite?.toggle()
         station.update(value: station.isFavorite ?? false, forKey: "isFavorite", completion: completion)
+    }
+    
+    func setCurrent(forIndexPath indexPath: IndexPath, completion: @escaping (Error?) -> Void) {
+        
+        resetIsCurrentForAllStations(completion: completion)
+        
+        guard let station = stations?[indexPath.item], let currentStation = currentStation else { return }
+        
+        spacecraft?.travel(to: station, from: currentStation)
+        
+        station.isCurrent?.toggle()
+        stations?[indexPath.item] = station
+        station.update(value: station.isCurrent ?? false, forKey: "isCurrent", completion: completion)
+    }
+    
+    private func resetIsCurrentForAllStations(completion: @escaping (Error?) -> Void) {
+        stations?.forEach { station in
+            station.isCurrent = false
+            station.update(value: station.isCurrent ?? false, forKey: "isCurrent", completion: completion)
+        }
+    }
+    
+    func decreaseDamageCapacity(completion: @escaping (Error?) -> Void) {
+        spacecraft?.damageCapacity -= 1
+        spacecraft?.update(value: spacecraft?.damageCapacity ?? .zero, forKey: "damageCapacity", completion: completion)
     }
 }

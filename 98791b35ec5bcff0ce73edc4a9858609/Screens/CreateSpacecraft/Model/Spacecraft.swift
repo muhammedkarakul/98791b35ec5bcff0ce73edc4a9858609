@@ -7,24 +7,33 @@
 
 import CoreData
 
-struct Spacecraft: Codable {
+class Spacecraft: Codable {
     let name: String?
     let durability: Int64
     let speed: Int64
     let capacity: Int64
-    let damageCapacity: Int64
+    var damageCapacity: Int64
+    var ugs: Int64
+    var eus: Int64
+    var ds: Int64
     
     init(name: String?,
          durability: Int64,
          speed: Int64,
          capacity: Int64,
-         damageCapacity: Int64) {
+         damageCapacity: Int64,
+         ugs: Int64,
+         eus: Int64,
+         ds: Int64) {
         
         self.name = name
         self.durability = durability
         self.speed = speed
         self.capacity = capacity
         self.damageCapacity = damageCapacity
+        self.ugs = ugs
+        self.eus = eus
+        self.ds = ds
     }
     
     init(fromManagedObject managedObject: NSManagedObject) {
@@ -33,6 +42,9 @@ struct Spacecraft: Codable {
         speed = managedObject.value(forKey: "speed") as! Int64
         capacity = managedObject.value(forKey: "capacity") as! Int64
         damageCapacity = managedObject.value(forKey: "damageCapacity") as! Int64
+        ugs = managedObject.value(forKey: "ugs") as! Int64
+        eus = managedObject.value(forKey: "eus") as! Int64
+        ds = managedObject.value(forKey: "ds") as! Int64
     }
 }
 
@@ -47,20 +59,25 @@ extension Spacecraft: Saveable {
          "durability" : durability,
          "speed" : speed,
          "capacity" : capacity,
-         "damageCapacity" : damageCapacity]
+         "damageCapacity" : damageCapacity,
+         "ugs": ugs,
+         "eus" : eus,
+         "ds": ds]
     }
 }
 
+// MARK: - Methods
 extension Spacecraft {
-    var ugs: Int64 {
-        capacity * 10000
-    }
-    
-    var eus: Int64 {
-        speed * 50
-    }
-    
-    var ds: Int64 {
-        durability * 10000
+    func travel(to station: Station, from currentStation: Station) {
+        ugs = ugs - station.need
+        update(value: ugs, forKey: "ugs")
+        
+        eus = eus - station.getDistanceToStation(currentStation)
+        update(value: eus, forKey: "eus")
+        
+        station.need = .zero
+        station.stock = station.capacity
+        station.update(value: station.need, forKey: "need")
+        station.update(value: station.stock, forKey: "stock")
     }
 }

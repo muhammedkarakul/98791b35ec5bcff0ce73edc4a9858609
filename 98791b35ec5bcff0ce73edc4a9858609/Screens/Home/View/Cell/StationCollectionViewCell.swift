@@ -9,7 +9,7 @@ import UIKit
 
 protocol StationCollectionViewCellDelegate: AnyObject {
     func stationCollectionViewCell(_ cell: StationCollectionViewCell, didFavoriteButtonTapped button: UIButton)
-    func didTravelButtonTapped(_ sender: UIButton)
+    func stationCollectionViewCell(_ cell: StationCollectionViewCell, didTravelButtonTapped button: UIButton)
 }
 
 final class StationCollectionViewCell: BaseCollectionViewCell {
@@ -170,6 +170,6 @@ extension StationCollectionViewCell {
     
     @objc
     private func didTravelButtonTapped(_ sender: UIButton) {
-        delegate?.didTravelButtonTapped(sender)
+        delegate?.stationCollectionViewCell(self, didTravelButtonTapped: sender)
     }
 }

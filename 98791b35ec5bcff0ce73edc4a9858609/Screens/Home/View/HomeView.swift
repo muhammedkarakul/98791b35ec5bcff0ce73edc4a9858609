@@ -22,7 +22,7 @@ final class HomeView: BaseView {
         }
     }
     
-    var time: Int? {
+    var time: Int64? {
         didSet {
             timeLabel.text = "\(time ?? 0)s"
         }

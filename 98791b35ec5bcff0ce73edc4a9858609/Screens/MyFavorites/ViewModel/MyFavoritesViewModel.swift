@@ -11,9 +11,12 @@ final class MyFavoritesViewModel: CoreDataAccessible {
     
     private var stations: [Station]? {
         didSet {
+            earthStation = stations?.filter({ $0.name == "Dünya"}).first
             favoriteStations = stations?.filter({  $0.isFavorite ?? false })
         }
     }
+    
+    private var earthStation: Station?
     
     private var favoriteStations: [Station]?
     
@@ -22,9 +25,9 @@ final class MyFavoritesViewModel: CoreDataAccessible {
     }
     
     func configureMyFavoriteTableViewCell(_ cell: MyFavoritesTableViewCell, forIndexPath indexPath: IndexPath) {
-        let station = favoriteStations?[indexPath.item]
-        cell.title = station?.name
-        cell.subtitle = "(\(station?.coordinateX ?? .zero), \(station?.coordinateY ?? .zero)"
+        guard let station = favoriteStations?[indexPath.item], let earthStation = earthStation else { return }
+        cell.title = station.name
+        cell.subtitle = "\(station.getDistanceToStation(earthStation))EUS"
     }
     
     func fetchStations(completion: (Error?) -> Void) {

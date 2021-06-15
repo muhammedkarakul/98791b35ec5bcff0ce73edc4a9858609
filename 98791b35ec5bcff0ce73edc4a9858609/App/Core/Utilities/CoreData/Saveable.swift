@@ -35,7 +35,7 @@ extension Saveable {
         }
     }
     
-    func update(value: Any, forKey key: String, completion: (Error?) -> Void) {
+    func update(value: Any, forKey key: String, completion: ((Error?) -> Void)? = nil) {
         let context = managedContext
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
@@ -50,9 +50,9 @@ extension Saveable {
                 results.first?.setValue(value, forKey: key)
                 try context?.save()
             }
-            completion(nil)
+            completion?(nil)
         } catch {
-            completion(error)
+            completion?(error)
         }
     }
 }

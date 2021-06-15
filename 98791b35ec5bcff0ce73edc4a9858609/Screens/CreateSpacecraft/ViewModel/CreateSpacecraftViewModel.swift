@@ -24,7 +24,10 @@ final class CreateSpacecraftViewModel: UserDefaultsAccessible, CoreDataAccessibl
                                     durability: durability,
                                     speed: speed,
                                     capacity: capacity,
-                                    damageCapacity: 100)
+                                    damageCapacity: 100,
+                                    ugs: capacity * 10000,
+                                    eus: speed * 20,
+                                    ds: durability * 10000)
         
         spacecraft.save(completion: completion)
     }
@@ -42,7 +45,12 @@ final class CreateSpacecraftViewModel: UserDefaultsAccessible, CoreDataAccessibl
             do {
                 let stations = try JSONDecoder().decode([Station].self, from: data)
                 self.stations = stations
-                self.stations?.forEach { $0.save(completion: completion) }
+                self.stations?.forEach { station in
+                    if station.name == "Dünya" {
+                        station.isCurrent = true
+                    }
+                    station.save(completion: completion)
+                }
                 completion(nil)
             } catch {
                 completion(error)

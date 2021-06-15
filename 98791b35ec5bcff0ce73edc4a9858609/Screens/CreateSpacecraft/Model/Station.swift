@@ -12,8 +12,8 @@ class Station: Codable {
     let coordinateX: Float
     let coordinateY: Float
     let capacity: Int64
-    let stock: Int64
-    let need: Int64
+    var stock: Int64
+    var need: Int64
     var isFavorite: Bool?
     var isCurrent: Bool?
     
@@ -48,6 +48,7 @@ class Station: Codable {
     }
 }
 
+// MARK: - Saveable
 extension Station: Saveable {
     var entityName: String {
         "Station"
@@ -62,5 +63,19 @@ extension Station: Saveable {
          "need" : need,
          "isFavorite" : isFavorite ?? false,
          "isCurrent" : isCurrent ?? false]
+    }
+}
+
+// MARK: - Equatable
+extension Station: Equatable {
+    static func == (lhs: Station, rhs: Station) -> Bool {
+        lhs.name == rhs.name
+    }
+}
+
+// MARK: - Methods
+extension Station {
+    func getDistanceToStation(_ station: Station) -> Int64 {
+        Int64(sqrt(pow(station.coordinateX - coordinateX, 2) + pow(station.coordinateY - coordinateY, 2)))
     }
 }
