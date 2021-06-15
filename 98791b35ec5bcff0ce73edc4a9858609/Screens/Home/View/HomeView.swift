@@ -167,6 +167,10 @@ final class HomeView: BaseView {
         collectionView.dataSource = dataSource
     }
     
+    func setSearchBarDelegate(_ delegate: UISearchBarDelegate) {
+        searchBar.delegate = delegate
+    }
+    
     func refresh() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -175,5 +179,9 @@ final class HomeView: BaseView {
     
     func indexPathForCell(_ cell: UICollectionViewCell) -> IndexPath? {
         collectionView.indexPath(for: cell)
+    }
+    
+    func scrollToItemForIndexPath(_ indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 }

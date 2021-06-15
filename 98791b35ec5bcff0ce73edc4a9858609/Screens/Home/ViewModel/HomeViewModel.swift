@@ -142,4 +142,14 @@ final class HomeViewModel: CoreDataAccessible, UserDefaultsAccessible {
             }
         }
     }
+    
+    func indexPathForStationName(_ name: String) -> IndexPath? {
+        guard let stations = stations else { return nil }
+        for (index, station) in stations.enumerated() {
+            if let isContain = station.name?.lowercased().contains(name.lowercased()), isContain {
+                return IndexPath(row: index, section: .zero)
+            }
+        }
+        return nil
+    }
 }

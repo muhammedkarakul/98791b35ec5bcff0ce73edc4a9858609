@@ -36,6 +36,7 @@ final class HomeViewController: BaseViewController<HomeView> {
     // MARK: - Setup
     override func linkInteractor() {
         super.linkInteractor()
+        baseView.setSearchBarDelegate(self)
         baseView.setCollectionViewDelegate(self, andDataSource: self)
         addGameOverObserver()
     }
@@ -163,5 +164,15 @@ extension HomeViewController {
                   message: "Tebrikler oyunu tamamladın! Yeniden oynamak ister misin?",
                   prefferedStyle: .alert,
                   actions: defaultAction)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 2 {
+            guard let indexPath = viewModel.indexPathForStationName(searchText) else { return }
+            baseView.scrollToItemForIndexPath(indexPath)
+        }
     }
 }
